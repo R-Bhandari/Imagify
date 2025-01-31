@@ -1,6 +1,6 @@
-import React from 'react'
+// import React from 'react'
 
-const description = () => {
+const Description = () => {
   return (
     <div>
         <h1>Create AI Images</h1>
@@ -8,4 +8,4 @@ const description = () => {
   )
 }
 
-export default description
+export default Description
