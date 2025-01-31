@@ -13,7 +13,7 @@ const Header = () => {
 
         <p className='text-center max-w-xl mx-auto mt-5'>Unlash your creativity with AI. Turn your Imagination into visual art in seconds - just type, and watch the magic happen</p>
 
-        <button className='sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full'>
+        <button className='sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full cursor-pointer hover:scale-105 transition-all duration-700'>
             Generate Images
             <img className='h-6' src={assets.star_group} alt="star_group" />
         </button>
