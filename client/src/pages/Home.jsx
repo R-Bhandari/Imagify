@@ -1,6 +1,7 @@
 // import React from 'react'
 
-import Description from "../components/Description"
+//import Description from "../components/Description"
+import Description from "../components/description"
 import GenerateBtn from "../components/GenerateBtn"
 import Header from "../components/Header"
 import Steps from "../components/Steps"

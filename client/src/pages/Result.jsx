@@ -7,7 +7,7 @@ const Result = () => {
 
   const [image, setImage] = useState(assets.sample_img_1)
   const [isImageLoaded, setIsImageLoaded] = useState(true)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [input, setInput] = useState('')
 
   const onSubmitHandler = async (e) => {
@@ -21,9 +21,9 @@ const Result = () => {
         <img src={image} alt="sample_image" className="max-w-sm rounded" />
         <span className={`absolute bottom-0 left-0 h-1 bg-blue-500 ${loading ? 'w-full transition-all duration-[10s]' : 'w-0'}`} />
       </div>
-      <p className={loading ? '' : 'hidden'} >Loading...</p>
+      <p className={!loading ? 'hidden' : ''} >Loading...</p>
     </div>
-
+ 
     { 
       !isImageLoaded && 
       <div className="flex w-full max-w-xl bg-neutral-500 text-white text-sm p-0.5 mt-10 rounded-full" >
