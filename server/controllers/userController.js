@@ -14,8 +14,8 @@ const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         const userData = {
-            name, 
-            email, 
+            name,
+            email,
             password: hashedPassword
         }
 
@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
         const user = await newUser.save()
 
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
-        
+
         res.json({success: true, token, user: {name: user.name}})
 
     } catch (error) {
@@ -42,17 +42,17 @@ const loginUser = async (req, res) => {
         if (!user) {
             return res.json({success:false, message: 'User does not exist!'})
         }
-        
+
         const isMatch = await bcrypt.compare(password, user.password)
-        
+
         if (isMatch) {
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
-        
+
             res.json({success: true, token, user: {name: user.name}})
         }else{
             return res.json({success:false, message: 'Invalid Credentials'})
         }
-        
+
     } catch (error) {
         console.log(error);
         res.json({success: false, message: error.message})
@@ -60,4 +60,18 @@ const loginUser = async (req, res) => {
 
 }
 
-export { registerUser, loginUser }
+const usercredits = async (req, res)=>{
+    try {
+        const {userId} = req.body
+
+        const user = await userModel.findById(userId)
+        res.json({success: true, credits: user.creditBalance, user: {name: user.name}})
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: error.message})
+
+    }
+
+}
+
+export { registerUser, loginUser, usercredits}
