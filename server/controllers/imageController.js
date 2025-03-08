@@ -19,8 +19,8 @@ export const generateImage = async (req, res) => {
             return res.json({ success: false, message: 'No Credit Balance', creditBalance: user.creditBalance })
         }
 
-        const formData = new FormData
-        FormData.append('prompt', prompt)
+        const formData = new FormData()
+        formData.append('prompt', prompt)
 
         const {data} = await axios.post('https://clipdrop-api.co/text-to-image/v1', formData, {
             headers: {
@@ -29,7 +29,7 @@ export const generateImage = async (req, res) => {
             responseType: 'arraybuffer'
         })
 
-        const base64Image = Buffer.form(data, 'binary').toString('base64')
+        const base64Image = Buffer.from(data, 'binary').toString('base64')
         const resultImage = `data:image/png;base64,${base64Image}`
 
         await userModel.findByIdAndUpdate(user._id, {creditBalance: user.creditBalance - 1})
