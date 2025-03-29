@@ -148,7 +148,7 @@ const paymentRazorpay = async(req,res) =>{
     }
 }
 
-const verifyRazorpay = aasync (req,res) => {
+const verifyRazorpay = async (req,res) => {
     try {
         
         const {razorpay_order_id} = req.body
