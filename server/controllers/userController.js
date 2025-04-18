@@ -78,8 +78,8 @@ const userCredits = async (req, res)=>{
 
 const razorpayInstance = new razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET
-})
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
 const paymentRazorpay = async(req,res) =>{
     try {
@@ -114,10 +114,10 @@ const paymentRazorpay = async(req,res) =>{
                 break;
         
             default:
-                return res.json({sucess: false, message:'plan not found'});
+                return res.json({ success: false, message:'plan not found'});
         }
 
-        date = Date.now()
+        date = Date.now();
 
         const transactionData = {
             userId, plan, amount, credits, date
@@ -128,7 +128,7 @@ const paymentRazorpay = async(req,res) =>{
         const options = {
             amount: amount,
             currency: process.env.CURRENCY,
-            reciept: newTransaction._id,
+            receipt: newTransaction._id,
         }
 
         await razorpayInstance.orders.create(options, (error, order) => {
@@ -143,7 +143,7 @@ const paymentRazorpay = async(req,res) =>{
 
 
     } catch (error) {
-        console.log(error);
+        console.log(error)
         res.json({success: false, message: error.message})
     }
 }
@@ -159,7 +159,7 @@ const verifyRazorpay = async (req,res) => {
             const transactionData = await transactionModel.findById(orderInfo.receipt)
 
             if(transactionData.payment) {
-                return res.json({sucess: false, message: 'Payment Failed'})
+                return res.json({success: false, message: 'Payment Failed'})
             }
 
             const userData = await userModel.findById(transactionData.userId)
